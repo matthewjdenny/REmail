@@ -1,4 +1,4 @@
-library(methods)
+#library(methods)
 # defining a class Email which can be used to parse emails.
 Email<-setClass(
   "Email",

@@ -1,10 +1,13 @@
 Package: REmail
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: A package for email data processing.
+Version: 0.1
 Date: 2015-05-24
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-Depends: methods
+Author: Matthew Denny and Neha Shah
+Maintainer: Matthew Denny <mzd5530@psu.edu>
+Description: An R package for processing email data into a useable format.
+License: GPL-3
+Depends: R.methodsS3
+Imports: R.methodsS3,
+    rPython,
+    
