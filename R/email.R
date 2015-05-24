@@ -23,9 +23,13 @@ setMethod(f="getElement",
 	signature="Email",
 	definition=function(object,element){
 		filename = object@filename
-		string_execute=paste("python parse.py ",filename,element,sep=" ")
-		output_obtained=system(string_execute,intern=TRUE)
-		object@subject = output_obtained
+		path <- paste(system.file(package="REmail"), "parse.py", sep="/")
+		command <- paste("python", path, filename, element, sep = " ")
+		response <- system(command, intern=T)
+		#string_execute=paste("python parse.py ",filename,element,sep=" ")
+		#output_obtained=system(string_execute,intern=TRUE)
+		#object@subject = output_obtained
+		object@subject = response
 		object
 	}
 	
