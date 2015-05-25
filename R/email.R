@@ -23,58 +23,65 @@ setMethod(f="getElement",
 	signature="Email",
 	definition=function(object){
 		filename = object@filename
+    cat("Processing Email:", filename,"\n")
 		path <- paste(system.file(package="REmail"), "parse.py", sep="/")
     
 		command <- paste("python", path, filename, "to", sep = " ")
-		try(response <- system(command, intern=T), silent = T)
+		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
       if(attr(response,"status") == 1){
         response <- ""
+        cat("To Field Empty \n")
       }
 		}  
 		object@to = response
     
 		command <- paste("python", path, filename, "from", sep = " ")
-		try(response <- system(command, intern=T), silent = T)
+		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
+		    cat("From Field Empty \n")
 		  }
 		}
 		object@from = response
     
 		command <- paste("python", path, filename, "date", sep = " ")
-		try(response <- system(command, intern=T), silent = T)
+		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
+		    cat("Date Field Empty \n")
 		  }
 		}
 		object@date = response
     
 		command <- paste("python", path, filename, "message", sep = " ")
-		try(response <- system(command, intern=T), silent = T)
+		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
+		    cat("Message Field Empty \n")
 		  }
 		}
 		object@message = response
     
 		command <- paste("python", path, filename, "subject", sep = " ")
-		try(response <- system(command, intern=T), silent = T)
+		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
+		    cat("Subject Field Empty \n")
 		  }
 		}
 		object@subject = response
     
     command <- paste("python", path, filename, "cc", sep = " ")
-    try(response <- system(command, intern=T), silent = T)
+    try(suppressWarnings(response <- system(command, intern=T)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
+		    cat("CC Field Empty \n")
 		  }
 		}
     object@CC = response
