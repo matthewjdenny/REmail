@@ -10,4 +10,4 @@ License: GPL-3
 Depends: R.methodsS3
 Imports: R.methodsS3,
     rPython,
-    
+    stringr

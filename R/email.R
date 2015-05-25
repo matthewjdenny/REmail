@@ -2,7 +2,7 @@
 # defining a class Email which can be used to parse emails.
 Email<-setClass(
   "Email",
-  slots=list(different_elements="vector",subject="character",to="character",from="character",message="character",date="character",CC ="character",filename="character"),
+  slots=list(other_elements="vector",subject="character",to="character",from="character",message="character",subject_tokenized = "character", message_tokenized = "character",date="character",CC ="character",filename="character",all_tokens = "character",num_tokens = "numeric", num_recipients = "numeric"),
   # Need to modify this validity function to ensure that the object is created only when filename is specified in the arguments
   validity=function(object){
   	if (!file.exists(object@filename)){
