@@ -24,26 +24,61 @@ setMethod(f="getElement",
 	definition=function(object){
 		filename = object@filename
 		path <- paste(system.file(package="REmail"), "parse.py", sep="/")
+    
 		command <- paste("python", path, filename, "to", sep = " ")
-		response <- system(command, intern=T)
+		try(response <- system(command, intern=T), silent = T)
+		if(!is.null(attr(response,"status"))){
+      if(attr(response,"status") == 1){
+        response <- ""
+      }
+		}  
 		object@to = response
+    
 		command <- paste("python", path, filename, "from", sep = " ")
-		response <- system(command, intern=T)
+		try(response <- system(command, intern=T), silent = T)
+		if(!is.null(attr(response,"status"))){
+		  if(attr(response,"status") == 1){
+		    response <- ""
+		  }
+		}
 		object@from = response
+    
 		command <- paste("python", path, filename, "date", sep = " ")
-		response <- system(command, intern=T)
+		try(response <- system(command, intern=T), silent = T)
+		if(!is.null(attr(response,"status"))){
+		  if(attr(response,"status") == 1){
+		    response <- ""
+		  }
+		}
 		object@date = response
+    
 		command <- paste("python", path, filename, "message", sep = " ")
-		response <- system(command, intern=T)
+		try(response <- system(command, intern=T), silent = T)
+		if(!is.null(attr(response,"status"))){
+		  if(attr(response,"status") == 1){
+		    response <- ""
+		  }
+		}
 		object@message = response
+    
 		command <- paste("python", path, filename, "subject", sep = " ")
-		response <- system(command, intern=T)
+		try(response <- system(command, intern=T), silent = T)
+		if(!is.null(attr(response,"status"))){
+		  if(attr(response,"status") == 1){
+		    response <- ""
+		  }
+		}
 		object@subject = response
+    
     command <- paste("python", path, filename, "cc", sep = " ")
-    response <- NULL
     try(response <- system(command, intern=T), silent = T)
-    object@subject = response
-		object
+		if(!is.null(attr(response,"status"))){
+		  if(attr(response,"status") == 1){
+		    response <- ""
+		  }
+		}
+    object@CC = response
+    
+		return(object)
 	}
-	
 )
