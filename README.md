@@ -21,13 +21,28 @@ I have  had success installing with R 3.2.0+ installed but if you do not have th
 version of R installed, it should work as long as you install the dependencies first with
 the following block of code:
 
-    install.packages( pkgs = c("R.methodsS3","rPython", dependencies = TRUE)
+    install.packages( pkgs = c("R.methodsS3","rPython","stringr" dependencies = TRUE)
 
 ## Examples
 
 Currently this package only implements a single function `Read_In_Email()` which will extract 
 the To, From, Cc, Date, Subject, and Message fields from and email and handle exceptions if 
-any are missing. Here is some example code:
+any are missing. This function will return an object of class `Email` that has the following attributes:
+
+* `@from` The email address of the sender (if provided) otherwise will simple store the value included in that field (such as "John Smith"
+* `@to` A vector of email address (or strings, handled the same way as the `@from` field) of recipients included in the "To:" field of the email.
+* `@CC` A vector of email address (or strings, handled the same way as the `@from` field) of recipients included in the "CC:" field of the email. If the field was left empty in the email, this simply stores "".
+* `@subject` A string containing the plain text of the subject line.
+* `@subject_tokenized` A string vector containing the lowercased plain text of the subject line with all punctuation removed except for "?" and "!".
+* `@message` A string containing the plain text of the message body with newlines and blank lines removed.
+* `@message_tokenized` A string vector containing the lowercased plain text of the message body with all punctuation removed except for "?" and "!".
+* `@date` The date the message was sent in is raw format (will require further parsing) or "" if no date field was included.
+* `@filename` The location of the email file on the user's computer.
+* `@all_tokens` A vector concatenating together the cleaned tokens in `@subject_tokenized` and `@message_tokenized` to ease further text processing.
+* `@num_tokens` The count of (cleaned) tokens in the subject and message.
+* `@num_recipients` The total number of email addresses in the "To:" and "CC:" fields in the email.
+
+Here is some example code:
 
     My_Email <- Read_In_Email("path/to/email.txt")
 
