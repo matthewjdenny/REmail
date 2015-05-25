@@ -39,9 +39,10 @@ setMethod(f="getElement",
 		command <- paste("python", path, filename, "subject", sep = " ")
 		response <- system(command, intern=T)
 		object@subject = response
-		#string_execute=paste("python parse.py ",filename,element,sep=" ")
-		#output_obtained=system(string_execute,intern=TRUE)
-		#object@subject = output_obtained
+    command <- paste("python", path, filename, "cc", sep = " ")
+    response <- NULL
+    try(response <- system(command, intern=T), silent = T)
+    object@subject = response
 		object
 	}
 	
