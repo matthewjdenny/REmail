@@ -4,7 +4,7 @@ Clean_Email_Input <- function(email_object){
   
   #get jsut email address if it is available, otherwise preserve what was there
   temp <- stringr::str_extract(email_object@from,email_re)
-  if(!is.na(temp)){
+  if(length(temp) > 0){
     email_object@from <- temp
   }
   
@@ -12,7 +12,7 @@ Clean_Email_Input <- function(email_object){
   num_recipients <- length(email_object@to)
   for(i in 1:length(email_object@to)){
     temp <- stringr::str_extract(email_object@to[i],email_re)
-    if(!is.na(temp)){
+    if(length(temp) > 0){
       email_object@to[i] <- temp
     }
   }
@@ -20,7 +20,7 @@ Clean_Email_Input <- function(email_object){
   #same thing for cc field
   for(i in 1:length(email_object@CC)){
     temp <- stringr::str_extract(email_object@CC[i],email_re)
-    if(!is.na(temp)){
+    if(length(temp) > 0){
       email_object@CC[i] <- temp
       num_recipients <- num_recipients + 1
     }
@@ -66,7 +66,7 @@ Clean_Email_Input <- function(email_object){
     }  
   }else if(length(email_object@message) > 1){
     indexes <- which(email_object@message == "")
-    if(length(indexes) > 0){
+    if (length(indexes) > 0){
       email_object@message <- email_object@message[-indexes]
     }
     tokenized <- Clean_String(email_object@message[1])
