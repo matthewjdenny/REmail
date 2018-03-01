@@ -1,13 +1,15 @@
 Package: REmail
 Type: Package
-Title: A package for email data processing.
-Version: 0.1
-Date: 2015-05-24
-Author: Matthew Denny and Neha Shah
-Maintainer: Matthew Denny <mzd5530@psu.edu>
+Title: A package for reading in email data wraping the python email libraries.
+Version: 0.2
+Date: 2018-03-01
+Author: Matthew Denny
+Maintainer: Matthew Denny <mdenny@psu.edu>
 Description: An R package for processing email data into a useable format.
 License: GPL-3
 Depends: R.methodsS3
 Imports: R.methodsS3,
     rPython,
     stringr
+Suggests: testthat
+RoxygenNote: 6.0.1
