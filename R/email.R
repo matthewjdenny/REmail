@@ -25,9 +25,11 @@ setMethod(f="getElement",
 		filename = object@filename
     cat("Processing Email:", filename,"\n")
 		path <- paste(system.file(package="REmail"), "parse.py", sep="/")
-    
+		  
 		command <- paste("python", path, filename, "to", sep = " ")
-		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+		try(suppressWarnings(response <- system(command, 
+		                                        intern = T,
+		                                        ignore.stderr = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
       if(attr(response,"status") == 1){
         response <- ""
@@ -37,7 +39,9 @@ setMethod(f="getElement",
 		object@to = response
     
 		command <- paste("python", path, filename, "from", sep = " ")
-		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+		try(suppressWarnings(response <- system(command, 
+		                                        intern = T,
+		                                        ignore.stderr = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
@@ -47,7 +51,10 @@ setMethod(f="getElement",
 		object@from = response
     
 		command <- paste("python", path, filename, "date", sep = " ")
-		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+		try(suppressWarnings(response <- system(command, 
+		                                        intern = T,
+		                                        ignore.stderr = TRUE,
+		                                        ignore.stdout = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
@@ -57,7 +64,9 @@ setMethod(f="getElement",
 		object@date = response
     
 		command <- paste("python", path, filename, "message", sep = " ")
-		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+		try(suppressWarnings(response <- system(command, 
+		                                        intern = T,
+		                                        ignore.stderr = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
@@ -67,7 +76,9 @@ setMethod(f="getElement",
 		object@message = response
     
 		command <- paste("python", path, filename, "subject", sep = " ")
-		try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+		try(suppressWarnings(response <- system(command, 
+		                                        intern = T,
+		                                        ignore.stderr = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
@@ -77,7 +88,9 @@ setMethod(f="getElement",
 		object@subject = response
     
     command <- paste("python", path, filename, "cc", sep = " ")
-    try(suppressWarnings(response <- system(command, intern=T)), silent = T)
+    try(suppressWarnings(response <- system(command, 
+                                            intern = T,
+                                            ignore.stderr = TRUE)), silent = T)
 		if(!is.null(attr(response,"status"))){
 		  if(attr(response,"status") == 1){
 		    response <- ""
