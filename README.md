@@ -21,7 +21,7 @@ I have  had success installing with R 3.2.0+ installed but if you do not have th
 version of R installed, it should work as long as you install the dependencies first with
 the following block of code:
 
-    install.packages( pkgs = c("R.methodsS3","rPython","stringr" dependencies = TRUE)
+    install.packages( pkgs = c("R.methodsS3","rPython","stringr"), dependencies = TRUE)
 
 ## Examples
 
