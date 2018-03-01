@@ -1,10 +1,6 @@
 # REmail
 
-An R package for Email Data Processing. This package will be significantly expanded over the next 
-few weeks to include a spam filter and the ability to handle massive complex email datasets automatically 
-with the ability to generate data in a format that can be easily used with the 
-[ContentStructure](https://github.com/matthewjdenny/ContentStructure) package
-we are also currently developing which can also be downloaded from Git. 
+An R package for email data ingestion. 
 
 ## Installation
 
@@ -25,8 +21,8 @@ the following block of code:
 
 ## Examples
 
-Currently this package only implements a single function `Read_In_Email()` which will extract 
-the To, From, Cc, Date, Subject, and Message fields from and email and handle exceptions if 
+This package only implements a function `Read_In_Email()` which will extract 
+the To, From, Cc, Date, Subject, and Message fields from an email using Pythons email libraries and handle exceptions if 
 any are missing. This function will return an object of class `Email` that has the following attributes:
 
 * `@from` The email address of the sender (if provided) otherwise will simple store the value included in that field (such as "John Smith"
@@ -44,6 +40,12 @@ any are missing. This function will return an object of class `Email` that has t
 
 Here is some example code:
 
-    My_Email <- Read_In_Email("path/to/email.txt")
+    files <- get_file_paths()
+    My_Email <- Read_In_Email(files[1)
+    
+If you instead want to process a collecton of emails to a data.frame, then use the following function:
 
-Please let me know if you run into any problems by emailing me at <mzd5530@psu.edu>.
+    files <- get_file_paths()
+    emails <- read_emails(files)
+
+Please let me know if you run into any problems by emailing me at <mdenny@psu.edu>.
